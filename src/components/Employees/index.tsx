@@ -16,10 +16,10 @@ import { RouterButton } from "../ui/Button";
 import EmployeeActionsRenderer from "./employeeActionsRenderer";
 
 function Employees() {
-  const { cafe } = useSearch({ from: "/employees/" });
-  const { data, isFetching, isRefetching } = useGetEmployees(cafe);
+  const { cafe_id } = useSearch({ from: "/employees/" });
+  const { data, isFetching, isRefetching } = useGetEmployees(cafe_id);
 
-  console.log("[EMP] data:", data, cafe);
+  console.log("[EMP] data:", data, cafe_id);
 
   const columnDefs: ColDef<EmployeeDetails>[] = [
     {

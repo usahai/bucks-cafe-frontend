@@ -14,12 +14,12 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as EmployeesIndexImport } from './routes/employees/index'
 import { Route as EmployeesEditIdImport } from './routes/employees/edit/$id'
 import { Route as CafesEditIdImport } from './routes/cafes/edit/$id'
 
 // Create Virtual Routes
 
-const EmployeesIndexLazyImport = createFileRoute('/employees/')()
 const CafesIndexLazyImport = createFileRoute('/cafes/')()
 const EmployeesAddLazyImport = createFileRoute('/employees/add')()
 const CafesAddLazyImport = createFileRoute('/cafes/add')()
@@ -33,17 +33,15 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const EmployeesIndexLazyRoute = EmployeesIndexLazyImport.update({
-  path: '/employees/',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() =>
-  import('./routes/employees/index.lazy').then((d) => d.Route),
-)
-
 const CafesIndexLazyRoute = CafesIndexLazyImport.update({
   path: '/cafes/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/cafes/index.lazy').then((d) => d.Route))
+
+const EmployeesIndexRoute = EmployeesIndexImport.update({
+  path: '/employees/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const EmployeesAddLazyRoute = EmployeesAddLazyImport.update({
   path: '/employees/add',
@@ -104,18 +102,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmployeesAddLazyImport
       parentRoute: typeof rootRoute
     }
+    '/employees/': {
+      id: '/employees/'
+      path: '/employees'
+      fullPath: '/employees'
+      preLoaderRoute: typeof EmployeesIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/cafes/': {
       id: '/cafes/'
       path: '/cafes'
       fullPath: '/cafes'
       preLoaderRoute: typeof CafesIndexLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/employees/': {
-      id: '/employees/'
-      path: '/employees'
-      fullPath: '/employees'
-      preLoaderRoute: typeof EmployeesIndexLazyImport
       parentRoute: typeof rootRoute
     }
     '/cafes/edit/$id': {
@@ -155,8 +153,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cafes/add': typeof CafesAddLazyRoute
   '/employees/add': typeof EmployeesAddLazyRoute
+  '/employees': typeof EmployeesIndexRoute
   '/cafes': typeof CafesIndexLazyRoute
-  '/employees': typeof EmployeesIndexLazyRoute
   '/cafes/edit/$id': typeof CafesEditIdRoute
   '/employees/edit/$id': typeof EmployeesEditIdRoute
   '/cafes/edit': typeof CafesEditIndexLazyRoute
@@ -167,8 +165,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cafes/add': typeof CafesAddLazyRoute
   '/employees/add': typeof EmployeesAddLazyRoute
+  '/employees': typeof EmployeesIndexRoute
   '/cafes': typeof CafesIndexLazyRoute
-  '/employees': typeof EmployeesIndexLazyRoute
   '/cafes/edit/$id': typeof CafesEditIdRoute
   '/employees/edit/$id': typeof EmployeesEditIdRoute
   '/cafes/edit': typeof CafesEditIndexLazyRoute
@@ -180,8 +178,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/cafes/add': typeof CafesAddLazyRoute
   '/employees/add': typeof EmployeesAddLazyRoute
+  '/employees/': typeof EmployeesIndexRoute
   '/cafes/': typeof CafesIndexLazyRoute
-  '/employees/': typeof EmployeesIndexLazyRoute
   '/cafes/edit/$id': typeof CafesEditIdRoute
   '/employees/edit/$id': typeof EmployeesEditIdRoute
   '/cafes/edit/': typeof CafesEditIndexLazyRoute
@@ -194,8 +192,8 @@ export interface FileRouteTypes {
     | '/'
     | '/cafes/add'
     | '/employees/add'
-    | '/cafes'
     | '/employees'
+    | '/cafes'
     | '/cafes/edit/$id'
     | '/employees/edit/$id'
     | '/cafes/edit'
@@ -205,8 +203,8 @@ export interface FileRouteTypes {
     | '/'
     | '/cafes/add'
     | '/employees/add'
-    | '/cafes'
     | '/employees'
+    | '/cafes'
     | '/cafes/edit/$id'
     | '/employees/edit/$id'
     | '/cafes/edit'
@@ -216,8 +214,8 @@ export interface FileRouteTypes {
     | '/'
     | '/cafes/add'
     | '/employees/add'
-    | '/cafes/'
     | '/employees/'
+    | '/cafes/'
     | '/cafes/edit/$id'
     | '/employees/edit/$id'
     | '/cafes/edit/'
@@ -229,8 +227,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CafesAddLazyRoute: typeof CafesAddLazyRoute
   EmployeesAddLazyRoute: typeof EmployeesAddLazyRoute
+  EmployeesIndexRoute: typeof EmployeesIndexRoute
   CafesIndexLazyRoute: typeof CafesIndexLazyRoute
-  EmployeesIndexLazyRoute: typeof EmployeesIndexLazyRoute
   CafesEditIdRoute: typeof CafesEditIdRoute
   EmployeesEditIdRoute: typeof EmployeesEditIdRoute
   CafesEditIndexLazyRoute: typeof CafesEditIndexLazyRoute
@@ -241,8 +239,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CafesAddLazyRoute: CafesAddLazyRoute,
   EmployeesAddLazyRoute: EmployeesAddLazyRoute,
+  EmployeesIndexRoute: EmployeesIndexRoute,
   CafesIndexLazyRoute: CafesIndexLazyRoute,
-  EmployeesIndexLazyRoute: EmployeesIndexLazyRoute,
   CafesEditIdRoute: CafesEditIdRoute,
   EmployeesEditIdRoute: EmployeesEditIdRoute,
   CafesEditIndexLazyRoute: CafesEditIndexLazyRoute,
@@ -264,8 +262,8 @@ export const routeTree = rootRoute
         "/",
         "/cafes/add",
         "/employees/add",
-        "/cafes/",
         "/employees/",
+        "/cafes/",
         "/cafes/edit/$id",
         "/employees/edit/$id",
         "/cafes/edit/",
@@ -281,11 +279,11 @@ export const routeTree = rootRoute
     "/employees/add": {
       "filePath": "employees/add.lazy.tsx"
     },
+    "/employees/": {
+      "filePath": "employees/index.tsx"
+    },
     "/cafes/": {
       "filePath": "cafes/index.lazy.tsx"
-    },
-    "/employees/": {
-      "filePath": "employees/index.lazy.tsx"
     },
     "/cafes/edit/$id": {
       "filePath": "cafes/edit/$id.tsx"

@@ -59,7 +59,7 @@ function EmployeeModal({
     event: RowClickedEvent<Employee & { cafe_id: string }>
   ) => {
     const { data } = event;
-    navigate({ to: "/employees", search: { cafe: data?.cafe_id ?? "" } });
+    navigate({ to: "/employees", search: { cafe_id: data?.cafe_id ?? "" } });
   };
 
   return (

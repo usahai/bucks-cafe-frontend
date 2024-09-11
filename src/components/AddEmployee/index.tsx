@@ -60,7 +60,7 @@ function AddEmployee({ employeeData }: AddEmployeeProps) {
     onSuccess: () => {
       window.alert("Successfully added employee!");
       queryClient.invalidateQueries({ queryKey: ["cafes"] });
-      navigate({ to: "/employees", search: { cafe: "" } });
+      navigate({ to: "/employees" });
     },
   });
 

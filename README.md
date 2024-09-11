@@ -44,6 +44,15 @@ My preference would have had been to implment `notistack`'s Snackbars to display
 
 Create a dynamic component for rendering the filters option in the table. It would have had been better if it was a checkbox-style, but most probably the correct implementation would have had been a optional radio-group system (disguised as ButtonGroup), since it would have leveraged the `location` query param from the URL.
 
+### Formatter and Aliasing
+
+Implement prettier and aliased imports to get rid of those ugly import statements. The end result should resemble something like
+
+```typescript
+import Button from "@/components/ui/Button";
+import { Employee } from "@/types/employees";
+```
+
 ## Known bugs
 
 - Cancel button missing on Add/Edit pages
