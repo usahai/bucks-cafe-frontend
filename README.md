@@ -2,19 +2,26 @@
 
 ## Getting started
 
-#### NOTE
+**NOTE:** Please start the backend service before starting the frontend.
 
-Please start the backend service before starting the frontend.
+### Local
 
 ```bash
 pnpm install
 pnpm dev --open
 ```
 
+### Docker
+
+```bash
+docker build -t bucks-cafe-frontend .
+docker run -p 5173:5173 bucks-cafe-frontend
+```
+
 ## Tech Stack
 
-- Tanstack-Query
-- Tanstack-Router
+- Tanstack query
+- Tanstack router
 - MUI v6
 - Zod
 - React-hook-form
