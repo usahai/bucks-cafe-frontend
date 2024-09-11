@@ -2,6 +2,10 @@
 
 ## Getting started
 
+#### NOTE
+
+Please start the backend service before starting the frontend.
+
 ```bash
 pnpm install
 pnpm dev --open
