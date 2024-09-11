@@ -1,0 +1,13 @@
+.links {
+  padding: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.link:active {
+  text-decoration: underline;
+}
+
+.toolbar {
+  background-color: #191919;
+}

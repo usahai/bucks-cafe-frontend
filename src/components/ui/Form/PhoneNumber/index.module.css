@@ -1,0 +1,23 @@
+.inputGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.inputContainer {
+  min-height: 5.1875rem;
+}
+
+.input {
+  padding: 0.5rem 0.5rem;
+  width: -webkit-fill-available;
+  font-family: monospace;
+}
+
+.error {
+  color: red;
+  font-size: x-small;
+  padding-left: 0.25rem;
+  margin-top: 0.25rem;
+}

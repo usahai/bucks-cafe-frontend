@@ -1,0 +1,34 @@
+.inputGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.inputContainer {
+  min-height: 5.875rem;
+}
+
+.labelCounter {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.labelCounter > div:last-child {
+  font-size: small;
+  color: gray;
+}
+
+.input {
+  padding: 0.5rem 0.5rem;
+  width: -webkit-fill-available;
+  resize: vertical;
+}
+
+.error {
+  color: red;
+  font-size: x-small;
+  padding-left: 0.25rem;
+  margin-top: -0.125rem;
+}

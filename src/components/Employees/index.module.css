@@ -1,0 +1,13 @@
+.addNewBtnContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.actionsRendererContainer {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 0.5rem;
+}

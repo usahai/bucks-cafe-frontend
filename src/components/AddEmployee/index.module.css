@@ -1,0 +1,13 @@
+.card {
+  padding: 2rem;
+}
+
+.submitBtnContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submitBtn {
+  color: white;
+}
